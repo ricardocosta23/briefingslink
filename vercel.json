@@ -5,8 +5,13 @@
       "src": "server/index.ts",
       "use": "@vercel/node",
       "config": {
-        "includeFiles": ["client/dist/**"]
+        "includeFiles": ["client/dist/**"],
+        "maxLambdaSize": "50mb"
       }
+    },
+    {
+      "src": "client/dist/**",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
@@ -19,11 +24,6 @@
       "dest": "/server/index.ts"
     }
   ],
-  "functions": {
-    "server/index.ts": {
-      "maxDuration": 30
-    }
-  },
   "env": {
     "NODE_ENV": "production"
   },
